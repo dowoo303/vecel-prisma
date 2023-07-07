@@ -4,7 +4,7 @@ import { MetaMaskSDK } from "@metamask/sdk";
 const MMSDK = new MetaMaskSDK({
   dappMetadata: {
     name: "Project",
-    url: "https://project.project",
+    url: "https://vecel-prisma.vercel.app/",
   },
 });
 
