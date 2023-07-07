@@ -2,9 +2,9 @@
 
 import axios from "axios";
 import { NextPage } from "next";
-import { FormEventHandler, useEffect, useState } from "react";
-import { personal } from "./lib/client";
+import { FormEventHandler, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { ethereum, personal } from "./lib/client";
 
 const Home: NextPage = () => {
   const [email, setEmail] = useState<string>("");
@@ -21,14 +21,10 @@ const Home: NextPage = () => {
 
       if (accounts) {
         const signedToken = await personal.sign(
-          `Welcome!/n/n/n${uuidv4()}`,
+          `Welcome!\n\n\n${uuidv4()}`,
           accounts[0],
           "Pass"
         );
-
-        // const recoverAccount = await personal.ecRecover("Hello", signedToken);
-
-        // console.log(recoverAccount);
 
         await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/user`, {
           account: accounts[0],
@@ -42,10 +38,6 @@ const Home: NextPage = () => {
       console.error(error);
     }
   };
-
-  useEffect(() => {
-    console.log(email);
-  }, [email]);
 
   return (
     <div className="bg-red-100 min-h-screen p-24">
