@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
       if (!email) return;
 
-      const accounts = await window.ethereum?.request({
+      const accounts: any = await ethereum?.request({
         method: "eth_requestAccounts",
       });
 
